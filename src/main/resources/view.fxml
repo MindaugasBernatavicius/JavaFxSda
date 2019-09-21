@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- 1 -->
+<!--<VBox>-->
+<!--    <Label text="Label text"/>-->
+<!--    <TextField text="TextField text"/>-->
+<!--    <Button text="Button text"/>-->
+<!--</VBox>-->
+
+<!-- We define the xmlns (xml namespace) so that the idea would recognize fx:* -->
+<VBox xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cf.mindaugas.controller.Controller">
+    <Label fx:id="label" text="Label text" />
+    <TextField fx:id="textField" />
+    <Button onAction="#onButtonClick" text="Button text" />
+</VBox>
