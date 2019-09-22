@@ -18,6 +18,8 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    private Scene scene;
+
     public static void main(String[] args) {
         Main.launch();
     }
@@ -32,7 +34,7 @@ public class Main extends Application {
         System.out.println("Starting app");
 
         // 1 ex:
-        // example1(primaryStage);
+        ex1HelloWorld(primaryStage);
 
         // 2 ex:
         // ex2TwoCollumnLayout(primaryStage);
@@ -71,7 +73,10 @@ public class Main extends Application {
         // ex13EventArgument(primaryStage);
 
         // 14 ex:
-        ex14FXML(primaryStage);
+        // ex14FXML(primaryStage);
+
+        // 15 ex:
+        ex15GUITesting(primaryStage);
     }
 
     @Override
@@ -81,6 +86,24 @@ public class Main extends Application {
     }
 
     // Separate examples for each concept
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
+    public Scene getScene(){
+        return this.scene;
+    }
+
+    public void ex15GUITesting(Stage stage) {
+        Button button = new Button("Press me");
+        button.setOnAction(event -> System.out.println("Click!"));
+        VBox vBox = new VBox();
+        vBox.getChildren().add(button);
+        scene = new Scene(vBox);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public void ex14FXML(Stage stage) {
         // We can set the element to Parent type
