@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cf.mindaugas</groupId>
-    <artifactId>jfx</artifactId>
+    <artifactId>JavaFxSda</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
