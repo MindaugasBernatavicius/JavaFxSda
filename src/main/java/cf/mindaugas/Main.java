@@ -34,7 +34,7 @@ public class Main extends Application {
         System.out.println("Starting app");
 
         // 1 ex:
-        ex1HelloWorld(primaryStage);
+        // ex1HelloWorld(primaryStage);
 
         // 2 ex:
         // ex2TwoCollumnLayout(primaryStage);
@@ -73,10 +73,10 @@ public class Main extends Application {
         // ex13EventArgument(primaryStage);
 
         // 14 ex:
-        // ex14FXML(primaryStage);
+        ex14FXML(primaryStage);
 
         // 15 ex:
-        ex15GUITesting(primaryStage);
+        // ex15GUITesting(primaryStage);
     }
 
     @Override

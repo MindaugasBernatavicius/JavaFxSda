@@ -32,8 +32,8 @@ class MainTest {
 
     @Test
     void when_appLoaded_buttonTextCorrect(FxRobot robot) {
-        // when
-
+        // given default application parameters
+        // when, app started
         // then
         Assertions.assertThat(robot.lookup(".button").queryButton()).hasText("Press me");
     }
