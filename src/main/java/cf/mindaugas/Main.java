@@ -1,7 +1,6 @@
 package cf.mindaugas;
 
 import javafx.application.Application;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -37,46 +36,37 @@ public class Main extends Application {
         // ex1HelloWorld(primaryStage);
 
         // 2 ex:
-        // ex2TwoCollumnLayout(primaryStage);
+        // ex2TwoColumnLayout(primaryStage);
 
         // 3 ex:
         // ex3GridPane(primaryStage);
 
         // 4 ex:
-        // ex4TextControlls(primaryStage);
+        // ex4TextControls(primaryStage);
 
         // 5 ex:
         // ex5ListView(primaryStage);
 
         // 6 ex:
-        // ex6Properties(primaryStage);
+        // ex6PropertiesAndChangeListeners(primaryStage);
 
         // 7 ex:
-        // ex7PropertyChangeListener(primaryStage);
+        // ex7ControlPropertyBindingTextFieldAndLabel(primaryStage);
 
         // 8 ex:
-        // ex8UnidiretionalBinding(primaryStage);
+        // ex8ControlPropertyBindingSlider(primaryStage);
 
         // 9 ex:
-        // ex9BidirectionalBinding(primaryStage);
+        // ex9ActionEvent(primaryStage);
 
         // 10 ex:
-        // ex10ControlPropertyBindingTextFieldAndLabel(primaryStage);
+        // ex10EventArgument(primaryStage);
 
         // 11 ex:
-        // ex11ControlPropertyBindingSlider(primaryStage);
+        // ex11FXML(primaryStage);
 
         // 12 ex:
-        // ex12ActionEvent(primaryStage);
-
-        // 13 ex:
-        // ex13EventArgument(primaryStage);
-
-        // 14 ex:
-        ex14FXML(primaryStage);
-
-        // 15 ex:
-        // ex15GUITesting(primaryStage);
+        // ex12GUITesting(primaryStage);
     }
 
     @Override
@@ -95,7 +85,7 @@ public class Main extends Application {
         return this.scene;
     }
 
-    public void ex15GUITesting(Stage stage) {
+    public void ex12GUITesting(Stage stage) {
         Button button = new Button("Press me");
         button.setOnAction(event -> System.out.println("Click!"));
         VBox vBox = new VBox();
@@ -105,7 +95,7 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void ex14FXML(Stage stage) {
+    public void ex11FXML(Stage stage) {
         // We can set the element to Parent type
         // ... or whichever type is the root element in the FXML
         Parent root = null;
@@ -123,7 +113,7 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void ex13EventArgument(Stage stage){
+    public void ex10EventArgument(Stage stage){
         TextField textField = new TextField();
         // Prints the key code in the console if the key is pressed
         textField.setOnKeyPressed(event -> System.out.print(event.getCode()));
@@ -134,7 +124,7 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void ex12ActionEvent(Stage stage){
+    public void ex9ActionEvent(Stage stage){
         Button button = new Button("Press me");
         button.setOnAction(event -> System.out.println("Click!"));
         // button.setOnAction(event -> System.out.println(event));
@@ -145,7 +135,7 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void ex11ControlPropertyBindingSlider(Stage stage) {
+    public void ex8ControlPropertyBindingSlider(Stage stage) {
         Slider slider = new Slider();
         VBox root = new VBox();
         root.spacingProperty().bind(slider.valueProperty());
@@ -158,10 +148,11 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void ex10ControlPropertyBindingTextFieldAndLabel(Stage stage) {
+    public void ex7ControlPropertyBindingTextFieldAndLabel(Stage stage) {
         TextField textField = new TextField();
         Label label = new Label();
-        textField.textProperty().bindBidirectional(label.textProperty());
+        label.textProperty().bindBidirectional(textField.textProperty());
+        // do we need bidirectional binding here?
         VBox vBox = new VBox();
         ObservableList<Node> children = vBox.getChildren();
         children.add(textField);
@@ -172,50 +163,14 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void ex9BidirectionalBinding(Stage stage) {
-        SimpleStringProperty property1 = new SimpleStringProperty();
-        SimpleStringProperty property2 = new SimpleStringProperty();
-        // Bidirectional binding of property1 and property2.
-        property2.bindBidirectional(property1);
-        // Changing property1 value
-        property1.setValue("Some new value");
-        // will change property2 value as well.
-        System.out.println(property2.getValue());
-        // Analogically:
-        property2.setValue("Some other new value");
-        System.out.println(property1.getValue());
-    }
-
-    public void ex8UnidiretionalBinding(Stage stage) {
-        SimpleStringProperty property1 = new SimpleStringProperty("xyz");
-        SimpleStringProperty property2 = new SimpleStringProperty();
-        // Unidirectional binding of property1 and property2.
-        // Property2 will follow property1 value.
-        property2.bind(property1);
-        // Changing property1 value
-        property1.setValue("Some new value");
-        // ... will change property2 value as well.
-        System.out.println(property2.getValue());
-    }
-
-    public void ex7PropertyChangeListener(Stage stage) {
-        // Creates a String property
-        SimpleStringProperty stringProperty = new SimpleStringProperty("xyz");
-        // Prints property's value
-        System.out.println(stringProperty.getValue());
-        // Adds a listener - action that will be run if property's value changes.
-        stringProperty.addListener((observable, oldValue, newValue) -> {
-            System.out.println("New value is set: " + newValue);
-        });
-        // Sets new value
-        stringProperty.setValue("Some new value");
-    }
-
-    public void ex6Properties(Stage stage) {
+    public void ex6PropertiesAndChangeListeners(Stage stage) {
         TextField textField = new TextField("Initial text value");
         textField.getText();
         textField.setText("New value");
         StringProperty textProperty = textField.textProperty();
+        textProperty.addListener((observable, oldValue, newValue) -> {
+            System.out.println("New value is set: " + newValue);
+        });
         Scene scene = new Scene(textField);
         stage.setScene(scene);
         stage.show();
@@ -235,7 +190,7 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void ex4TextControlls(Stage stage) {
+    public void ex4TextControls(Stage stage) {
         CheckBox checkbox = new CheckBox("Tick me!");
         System.out.println(checkbox.getText());
         Scene scene = new Scene(checkbox);
@@ -257,7 +212,7 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void ex2TwoCollumnLayout(Stage stage){
+    public void ex2TwoColumnLayout(Stage stage){
         // Preparing first column
         VBox column1 = new VBox();
         ObservableList<Node> column1Children = column1.getChildren();
