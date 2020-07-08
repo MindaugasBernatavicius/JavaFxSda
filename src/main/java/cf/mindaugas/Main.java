@@ -3,11 +3,14 @@ package cf.mindaugas;
 import javafx.application.Application;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -67,6 +70,15 @@ public class Main extends Application {
 
         // 12 ex:
         // ex12GUITesting(primaryStage);
+
+        // 13 ex:
+        // https://www.google.com/search?q=javafx+load+another+scene+close+first&rlz=1C1CHBF_enLT880LT880&oq=javafx+load+another+scene+close+first&aqs=chrome..69i57j33.10251j1j7&sourceid=chrome&ie=UTF-8
+        // TODO :: load another scene from the main scene, passing a resource to it for display (login scene -> main scene)
+        // and switch back to the previous scene
+
+        // 14 ex:
+        // https://stackoverflow.com/questions/31139260/add-a-button-to-a-cells-in-a-tableview-javafx
+        // TODO :: table view with buttons on each row
     }
 
     @Override
@@ -74,8 +86,6 @@ public class Main extends Application {
         // this will be executed even if Exception is thrown at runtime
         System.out.println("Stopping app");
     }
-
-    // Separate examples for each concept
 
     public void setScene(Scene scene) {
         this.scene = scene;
@@ -116,7 +126,12 @@ public class Main extends Application {
     public void ex10EventArgument(Stage stage){
         TextField textField = new TextField();
         // Prints the key code in the console if the key is pressed
-        textField.setOnKeyPressed(event -> System.out.print(event.getCode()));
+        textField.setOnKeyPressed(event -> {
+            System.out.print(event.getCode() + "\n");
+            // targeting specific key
+            if(event.getCode() == KeyCode.BACK_SPACE)
+                System.out.println("Hello!");
+        });
         VBox vBox = new VBox();
         vBox.getChildren().add(textField);
         Scene scene = new Scene(vBox);
@@ -127,7 +142,14 @@ public class Main extends Application {
     public void ex9ActionEvent(Stage stage){
         Button button = new Button("Press me");
         button.setOnAction(event -> System.out.println("Click!"));
-        // button.setOnAction(event -> System.out.println(event));
+        // lambda expression is just a more convenient way to write anonymous class
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                System.out.println("Click!");
+            }
+        });
+        // button.setOnAction(event -> System.out.println(event.getEventType()));
         VBox vBox = new VBox();
         vBox.getChildren().add(button);
         Scene scene = new Scene(vBox);
@@ -149,14 +171,25 @@ public class Main extends Application {
     }
 
     public void ex7ControlPropertyBindingTextFieldAndLabel(Stage stage) {
-        TextField textField = new TextField();
-        Label label = new Label();
-        label.textProperty().bindBidirectional(textField.textProperty());
+        // TextField textField = new TextField();
+        // Label label = new Label();
+        // // label.textProperty().bind(textField.textProperty()); // unidirectional
+        // // label.textProperty().bindBidirectional(textField.textProperty()); // bidirectional
+        // // do we need bidirectional binding here?
+        // VBox vBox = new VBox();
+        // ObservableList<Node> children = vBox.getChildren();
+        // children.add(textField);
+        // children.add(label);
+
+        TextField textField1 = new TextField();
+        TextField textField2 = new TextField();
+        textField1.textProperty().bindBidirectional(textField2.textProperty()); // bidirectional
         // do we need bidirectional binding here?
+
         VBox vBox = new VBox();
         ObservableList<Node> children = vBox.getChildren();
-        children.add(textField);
-        children.add(label);
+        children.add(textField1);
+        children.add(textField2);
 
         Scene scene = new Scene(vBox);
         stage.setScene(scene);
@@ -169,7 +202,9 @@ public class Main extends Application {
         textField.setText("New value");
         StringProperty textProperty = textField.textProperty();
         textProperty.addListener((observable, oldValue, newValue) -> {
+            System.out.println("Old value is set: " + oldValue);
             System.out.println("New value is set: " + newValue);
+            System.out.println("Observable: " + observable);
         });
         Scene scene = new Scene(textField);
         stage.setScene(scene);
@@ -177,7 +212,9 @@ public class Main extends Application {
     }
 
     public void ex5ListView(Stage stage) {
+        // ListView specifies how the elements will be arranged
         ListView<String> listView = new ListView<>();
+        // ObservableList will actually hold the elements
         ObservableList<String> items = listView.getItems();
         items.add("Element 1");
         items.add("Element 2");

@@ -14,6 +14,7 @@
     </properties>
 
     <dependencies>
+        <!-- Dependencies for development -->
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx -->
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -32,6 +33,8 @@
             <artifactId>javafx-fxml</artifactId>
             <version>11</version>
         </dependency>
+
+        <!-- Dependencies for testing -->
         <dependency>
             <groupId>org.testfx</groupId>
             <artifactId>testfx-core</artifactId>
@@ -51,5 +54,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 </project>

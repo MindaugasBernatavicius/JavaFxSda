@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 
 <!-- 1 -->
 <!--<VBox>-->
@@ -11,8 +13,50 @@
 <!--</VBox>-->
 <!-- We define the xmlns (xml namespace) so that the idea would recognize fx:* -->
 
-<VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cf.mindaugas.controller.Controller">
+<!--<VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cf.mindaugas.controller.Controller">-->
+<!--    <Label fx:id="label" text="Label text" />-->
+<!--    <TextField fx:id="textField" />--> <!-- @FXML private TextField textField; -->
+<!--    <Button onAction="#onButtonClick" prefHeight="26.0" prefWidth="78.0" text="Button text" />-->
+<!--</VBox>-->
+
+<VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <Label fx:id="label" text="Label text" />
+    <BorderPane prefHeight="200.0" prefWidth="200.0">
+        <center>
+            <Arc length="270.0" radiusX="69.0" radiusY="57.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" BorderPane.alignment="CENTER">
+                <fill>
+                    <RadialGradient centerX="0.5" centerY="0.5" radius="0.9205607476635514">
+                        <stops>
+                            <Stop>
+                                <color>
+                                    <Color red="0.12554094195365906" green="0.1891120821237564" blue="0.24473683536052704" />
+                                </color>
+                            </Stop>
+                            <Stop offset="1.0">
+                                <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                </color>
+                            </Stop>
+                        </stops>
+                    </RadialGradient>
+                </fill>
+            </Arc>
+        </center>
+    </BorderPane>
     <TextField fx:id="textField" />
-    <Button onAction="#onButtonClick" text="Button text" />
+    <Accordion>
+        <panes>
+            <TitledPane animated="false" text="untitled 1">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                </content>
+            </TitledPane>
+            <TitledPane animated="false" text="untitled 2">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                </content>
+            </TitledPane>
+            <TitledPane animated="false" text="untitled 3" />
+        </panes>
+    </Accordion>
 </VBox>
