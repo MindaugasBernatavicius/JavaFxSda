@@ -69,14 +69,21 @@ public class Main extends Application {
         // ex11FXML(primaryStage);
 
         // 12 ex:
-        // ex12GUITesting(primaryStage);
+        ex12GUITesting(primaryStage);
 
         // 13 ex:
-        // https://www.google.com/search?q=javafx+load+another+scene+close+first&rlz=1C1CHBF_enLT880LT880&oq=javafx+load+another+scene+close+first&aqs=chrome..69i57j33.10251j1j7&sourceid=chrome&ie=UTF-8
-        // TODO :: load another scene from the main scene, passing a resource to it for display (login scene -> main scene)
-        // and switch back to the previous scene
+        // ex13loadAnotherSceneAndSwitchBack(primaryStage);
 
         // 14 ex:
+        // ex14OpeningAnotherWindow(primaryStage);
+
+        // 15 ex:
+        // ex15PassDataBetweenScenesAndBack(primaryStage);
+
+        // 16 ex:
+        // ex15PassDataBetweenWindowsAndBack(primaryStage);
+
+        // 17 ex:
         // https://stackoverflow.com/questions/31139260/add-a-button-to-a-cells-in-a-tableview-javafx
         // TODO :: table view with buttons on each row
     }
@@ -95,8 +102,100 @@ public class Main extends Application {
         return this.scene;
     }
 
-    public void ex12GUITesting(Stage stage) {
+    public void ex14OpeningAnotherWindow(Stage stage) {
         Button button = new Button("Press me");
+        VBox vBox = new VBox();
+        vBox.getChildren().add(button);
+        scene = new Scene(vBox, 100, 30);
+        stage.setScene(scene);
+        stage.show();
+
+        // ... no lambdas
+        // button.setOnAction(new EventHandler<ActionEvent>() {
+        //     public void handle(ActionEvent event) {
+        //         Parent root;
+        //         try {
+        //             root = FXMLLoader.load(getClass().getResource("/view.fxml"));
+        //             Stage stage = new Stage();
+        //             stage.setTitle("My New Stage Title");
+        //             stage.setScene(new Scene(root, 450, 450));
+        //             stage.show();
+        //             // Hide this current window (if this is what you want)
+        //             // ((Node)(event.getSource())).getScene().getWindow().hide();
+        //         }
+        //         catch (IOException e) {
+        //             e.printStackTrace();
+        //         }
+        //     }
+        // });
+
+        // ... w/ lambdas
+        button.setOnAction(event -> {
+            Parent root;
+            try {
+                root = FXMLLoader.load(getClass().getResource("/view.fxml"));
+                Stage stage2 = new Stage();
+                stage2.setTitle("My New Stage Title");
+                stage2.setScene(new Scene(root, 450, 450));
+                stage2.show();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public void ex13loadAnotherSceneAndSwitchBack(Stage stage){
+
+        // if you set the width to too small it will cause graphics issues with the button text!
+        // double buttonWidth = 100;
+        double buttonWidth = 60;
+        double buttonHeight = 30;
+
+        // draw the initial scene
+        Button button1 = new Button("Next scene");
+        button1.setMinWidth(buttonWidth);
+        button1.setMinHeight(buttonHeight);
+
+        scene = new Scene(button1, buttonWidth, buttonHeight);
+        stage.setScene(scene);
+        stage.show();
+
+        // // define the elements controlling the next scene
+        // Button button2 = new Button("Previous scene");
+        // Scene scene2 = new Scene(button2);
+        //
+        // // ... tie in action listeners
+        // button1.setOnAction(event -> {
+        //     stage.setScene(scene2);
+        //     stage.show();
+        // });
+        //
+        // button2.setOnAction(e -> {
+        //     stage.setScene(scene);
+        //     stage.show();
+        // });
+
+
+        // another way
+        // ... tie in action listeners
+        button1.setOnAction(event -> {
+            // define the elements controlling the next scene
+            Button button2 = new Button("Previous scene");
+            Scene scene2 = new Scene(button2, buttonWidth, buttonHeight);
+            stage.setScene(scene2);
+            stage.show();
+
+            button2.setOnAction(e -> {
+                stage.setScene(scene);
+                stage.show();
+            });
+        });
+    }
+
+    public void ex12GUITesting(Stage stage) {
+        Button button = new Button("Press me!");
+
         button.setOnAction(event -> System.out.println("Click!"));
         VBox vBox = new VBox();
         vBox.getChildren().add(button);

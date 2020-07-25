@@ -9,6 +9,8 @@ import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 import org.testfx.framework.junit5.Stop;
 
+import static org.testfx.assertions.api.Assertions.assertThat;
+
 @ExtendWith(ApplicationExtension.class)
 class MainTest {
 
@@ -35,6 +37,6 @@ class MainTest {
         // given default application parameters
         // when, app started
         // then
-        Assertions.assertThat(robot.lookup(".button").queryButton()).hasText("Press me");
+        assertThat(robot.lookup(".button").queryButton()).hasText("Press me");
     }
 }
