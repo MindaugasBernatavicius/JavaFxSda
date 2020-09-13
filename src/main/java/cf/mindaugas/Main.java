@@ -66,10 +66,11 @@ public class Main extends Application {
         // ex10EventArgument(primaryStage);
 
         // 11 ex:
+        // migth need to add: --add-modules javafx.controls,javafx.fxml
         // ex11FXML(primaryStage);
 
         // 12 ex:
-        ex12GUITesting(primaryStage);
+        // ex12GUITesting(primaryStage);
 
         // 13 ex:
         // ex13loadAnotherSceneAndSwitchBack(primaryStage);
@@ -98,7 +99,7 @@ public class Main extends Application {
         this.scene = scene;
     }
 
-    public Scene getScene(){
+    public Scene getScene() {
         return this.scene;
     }
 
@@ -133,19 +134,19 @@ public class Main extends Application {
         button.setOnAction(event -> {
             Parent root;
             try {
+                // Exception in thread "JavaFX Application Thread" java.lang.NoClassDefFoundError: Could not initialize class javafx.fxml.FXMLLoader
                 root = FXMLLoader.load(getClass().getResource("/view.fxml"));
                 Stage stage2 = new Stage();
                 stage2.setTitle("My New Stage Title");
                 stage2.setScene(new Scene(root, 450, 450));
                 stage2.show();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         });
     }
 
-    public void ex13loadAnotherSceneAndSwitchBack(Stage stage){
+    public void ex13loadAnotherSceneAndSwitchBack(Stage stage) {
 
         // if you set the width to too small it will cause graphics issues with the button text!
         // double buttonWidth = 100;
@@ -222,13 +223,13 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void ex10EventArgument(Stage stage){
+    public void ex10EventArgument(Stage stage) {
         TextField textField = new TextField();
         // Prints the key code in the console if the key is pressed
         textField.setOnKeyPressed(event -> {
             System.out.print(event.getCode() + "\n");
             // targeting specific key
-            if(event.getCode() == KeyCode.BACK_SPACE)
+            if (event.getCode() == KeyCode.BACK_SPACE)
                 System.out.println("Hello!");
         });
         VBox vBox = new VBox();
@@ -238,7 +239,7 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void ex9ActionEvent(Stage stage){
+    public void ex9ActionEvent(Stage stage) {
         Button button = new Button("Press me");
         button.setOnAction(event -> System.out.println("Click!"));
         // lambda expression is just a more convenient way to write anonymous class
@@ -334,7 +335,7 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void ex3GridPane(Stage stage){
+    public void ex3GridPane(Stage stage) {
         GridPane root = new GridPane();
         // Adding controls to specified cells. Second argument is column index
         // third one is the row index.
@@ -348,7 +349,7 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void ex2TwoColumnLayout(Stage stage){
+    public void ex2TwoColumnLayout(Stage stage) {
         // Preparing first column
         VBox column1 = new VBox();
         ObservableList<Node> column1Children = column1.getChildren();
@@ -375,10 +376,13 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void ex1HelloWorld(Stage stage){
+    public void ex1HelloWorld(Stage stage) {
         // Creating the container object
         VBox vBox = new VBox();
         // Creating a label control. Constructor argument represents displayed text.
+        // If you see error here: install openjfx:
+        // ... and add these to the run configuration: https://gluonhq.com/products/javafx/
+        // --module-path C:\Users\<USER_NAME>\<PATH_TO_SDK>\javafx-sdk-11.0.2\lib --add-modules javafx.controls
         Label label = new Label("Hello world!");
         // Setting label to be a child of the vBox container
         vBox.getChildren().add(label);
