@@ -78,15 +78,15 @@ public class Main extends Application {
         // 14 ex:
         // ex14OpeningAnotherWindow(primaryStage);
 
-        // 15 ex:
-        // ex15PassDataBetweenScenesAndBack(primaryStage);
+        // TODO :: 15 ex:
+        //  ex15PassDataBetweenScenesAndBack(primaryStage);
 
-        // 16 ex:
-        // ex15PassDataBetweenWindowsAndBack(primaryStage);
+        // TODO :: 16 ex:
+        //  ex15PassDataBetweenWindowsAndBack(primaryStage);
 
-        // 17 ex:
-        // https://stackoverflow.com/questions/31139260/add-a-button-to-a-cells-in-a-tableview-javafx
-        // TODO :: table view with buttons on each row
+        // TODO :: 17 ex:
+        //  https://stackoverflow.com/questions/31139260/add-a-button-to-a-cells-in-a-tableview-javafx
+        //  table view with buttons on each row
     }
 
     @Override
@@ -147,7 +147,6 @@ public class Main extends Application {
     }
 
     public void ex13loadAnotherSceneAndSwitchBack(Stage stage) {
-
         // if you set the width to too small it will cause graphics issues with the button text!
         // double buttonWidth = 100;
         double buttonWidth = 60;
@@ -194,8 +193,11 @@ public class Main extends Application {
         });
     }
 
+    // Attention: you need to run the MainTest class in it/java/ directory
     public void ex12GUITesting(Stage stage) {
         Button button = new Button("Press me!");
+        button.getStyleClass().clear();
+        button.getStyleClass().add("custom-btn-class");
 
         button.setOnAction(event -> System.out.println("Click!"));
         VBox vBox = new VBox();

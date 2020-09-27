@@ -38,5 +38,6 @@ class MainTest {
         // when, app started
         // then
         assertThat(robot.lookup(".button").queryButton()).hasText("Press me");
+        // assertThat(robot.lookup(".custom-btn-class").queryButton()).hasText("Press me!");
     }
 }
